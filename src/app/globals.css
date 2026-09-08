@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+/* Vazirmatn (variable), self-hosted — no Google Fonts network dependency at build or run time. */
+@font-face {
+  font-family: "Vazirmatn Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url("/fonts/vazirmatn-arabic-wght-normal.woff2") format("woff2-variations");
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E,
+    U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC;
+}
+@font-face {
+  font-family: "Vazirmatn Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url("/fonts/vazirmatn-latin-wght-normal.woff2") format("woff2-variations");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122,
+    U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  --color-canvas: #f6f4f1;
+  --color-surface: #ffffff;
+  --color-border: #e7e2da;
+  --color-border-soft: #f0ede8;
+  --color-ink: #241f2e;
+  --color-ink-soft: #453f52;
+  --color-muted: #6f6a7d;
+  --color-faint: #a79fb0;
+  --color-primary: #363592;
+  --color-primary-dark: #272569;
+  --color-primary-tint: rgba(54, 53, 146, 0.06);
+  --color-primary-tint-strong: rgba(54, 53, 146, 0.08);
+  --color-gold: #d9a44f;
+  --color-gold-tint: #f7f0de;
+  --color-gold-text: #a08a4a;
+  --color-hero: #241f2e;
+  --color-hero-text: #f2e6cd;
+  --color-hero-muted: #c9c3d4;
+  --color-hero-faint: #a39dae;
+  --color-hero-line: rgba(255, 255, 255, 0.1);
+  --color-field-bg: #fbfaf8;
+}
+
+@theme inline {
+  --font-sans: "Vazirmatn Variable", Tahoma, system-ui, sans-serif;
+  --font-mono: ui-monospace, Consolas, monospace;
+
+  --color-canvas: var(--color-canvas);
+  --color-surface: var(--color-surface);
+  --color-border: var(--color-border);
+  --color-border-soft: var(--color-border-soft);
+  --color-ink: var(--color-ink);
+  --color-ink-soft: var(--color-ink-soft);
+  --color-muted: var(--color-muted);
+  --color-faint: var(--color-faint);
+  --color-primary: var(--color-primary);
+  --color-primary-dark: var(--color-primary-dark);
+  --color-primary-tint: var(--color-primary-tint);
+  --color-primary-tint-strong: var(--color-primary-tint-strong);
+  --color-gold: var(--color-gold);
+  --color-gold-tint: var(--color-gold-tint);
+  --color-gold-text: var(--color-gold-text);
+  --color-hero: var(--color-hero);
+  --color-hero-text: var(--color-hero-text);
+  --color-hero-muted: var(--color-hero-muted);
+  --color-hero-faint: var(--color-hero-faint);
+  --color-field-bg: var(--color-field-bg);
+}
+
+body {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+}
+
+/* Numeric values always read left-to-right, even inside the RTL layout. */
+.num {
+  direction: ltr;
+  unicode-bidi: isolate;
+  font-variant-numeric: tabular-nums;
+}
