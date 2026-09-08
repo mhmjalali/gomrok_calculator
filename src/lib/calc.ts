@@ -3,10 +3,13 @@
 // and Persian label so this file can be checked against the source spreadsheet at any time.
 // Verified byte-for-byte against the original workbook's computed values.
 
+import { defaultCurrencyKey } from "./currencies";
+
 export interface CalcInputs {
   qty: number; // A2 - تعداد (quantity)
   goodsValue: number; // D2 - ارزش کالا (goods value per unit)
-  customsDollarRate: number; // E2 - دلار گمرکی (customs dollar rate) — prefilled, user may overwrite
+  customsCurrency: string; // selected currency key for the دلار گمرکی dropdown — UI-only, not used in the math
+  customsDollarRate: number; // E2 - دلار گمرکی (customs dollar rate) — prefilled from the selected currency, user may overwrite
   insuranceFreight: number; // F2 - بیمه و کرایه (insurance & freight factor) — prefilled, user may overwrite
   dutyFactor: number; // C3 - part of حقوق گمرکی
   profitFactor: number; // C4 - part of سود بازرگانی
@@ -61,12 +64,13 @@ export interface CalcResult {
 }
 
 export const defaultInputs: CalcInputs = {
-  qty: 1,
-  goodsValue: 0.65,
-  customsDollarRate: 1310661,
-  insuranceFreight: 1.005,
-  dutyFactor: 0.2,
-  profitFactor: 0.15,
+  qty: 0,
+  goodsValue: 0,
+  customsCurrency: defaultCurrencyKey, // "دلار" — matches customsDollarRate below
+  customsDollarRate: 1310661, // prefilled statistical default — badge "پیش‌فرض", user may overwrite
+  insuranceFreight: 1.005, // prefilled statistical default — badge "پیش‌فرض", user may overwrite
+  dutyFactor: 0,
+  profitFactor: 0,
   labFee: 0,
   miscCost: 0,
 };

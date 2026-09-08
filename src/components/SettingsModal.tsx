@@ -44,11 +44,11 @@ export default function SettingsModal({ open, settings, onChange, onClose }: Set
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(36,31,46,0.5)] p-5"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(36,31,46,0.5)] p-3 sm:p-5"
       onClick={onClose}
     >
       <div
-        className="max-h-[85vh] w-full max-w-[640px] overflow-y-auto rounded-[20px] bg-surface p-7 shadow-[0_24px_60px_rgba(20,16,30,0.35)]"
+        className="max-h-[90vh] w-full max-w-[640px] overflow-y-auto rounded-[20px] bg-surface p-5 shadow-[0_24px_60px_rgba(20,16,30,0.35)] sm:max-h-[85vh] sm:p-7"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="mb-1.5 flex items-center justify-between">
@@ -73,7 +73,7 @@ export default function SettingsModal({ open, settings, onChange, onClose }: Set
         </p>
 
         <h3 className="mb-3 text-[12.5px] font-bold uppercase tracking-wide text-gold-text">نرخ‌ها (درصدها)</h3>
-        <div className="mb-5 grid grid-cols-2 gap-3">
+        <div className="mb-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
           {RATE_FIELDS.map((f) => (
             <NumberField
               key={f.key}
@@ -85,7 +85,7 @@ export default function SettingsModal({ open, settings, onChange, onClose }: Set
         </div>
 
         <h3 className="mb-3 text-[12.5px] font-bold uppercase tracking-wide text-gold-text">مبالغ ثابت</h3>
-        <div className="mb-6 grid grid-cols-2 gap-3">
+        <div className="mb-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
           {AMOUNT_FIELDS.map((f) => (
             <NumberField
               key={f.key}
@@ -96,7 +96,7 @@ export default function SettingsModal({ open, settings, onChange, onClose }: Set
           ))}
         </div>
 
-        <div className="flex items-center justify-between border-t border-border-soft pt-5">
+        <div className="flex flex-col-reverse gap-3 border-t border-border-soft pt-5 sm:flex-row sm:items-center sm:justify-between">
           <button
             type="button"
             onClick={() => onChange(defaultSettings)}

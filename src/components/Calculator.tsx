@@ -26,12 +26,12 @@ export default function Calculator() {
 
       <KpiBanner r={result} />
 
-      <div className="grid flex-1 grid-cols-[400px_1fr] gap-6 px-14 pt-6">
+      <div className="grid flex-1 grid-cols-1 gap-5 px-4 pt-5 sm:gap-6 sm:px-6 sm:pt-6 lg:grid-cols-[400px_1fr] lg:px-14">
         <FormCard inputs={inputs} onChange={setField} />
         <StatGrid r={result} />
       </div>
 
-      <div className="py-9 text-center text-xs text-faint">
+      <div className="px-4 py-9 text-center text-xs text-faint">
         برگرفته از فرمول گمرکی ۱۴۰۵ پاوه &mdash; تمامی محاسبات مطابق فایل مرجع است.
       </div>
 

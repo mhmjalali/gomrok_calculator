@@ -27,13 +27,13 @@ export default function StatGrid({ r }: { r: CalcResult }) {
     <div>
       <h2 className="mb-3.5 text-[15.5px] font-bold">اجزای هزینه</h2>
 
-      <div className="grid grid-cols-3 gap-3.5">
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-3.5">
         {cards.map((c) => (
           <StatCard key={c.hint} {...c} />
         ))}
       </div>
 
-      <div className="mt-3.5 grid grid-cols-2 gap-3.5">
+      <div className="mt-3 grid grid-cols-1 gap-3 sm:mt-3.5 sm:grid-cols-2 sm:gap-3.5">
         <SecondaryStat label="هزینه گمرکی و کولبری هرعدد" hint="E12" value={r.costPerUnit} />
         <SecondaryStat label="مجموع کل هزینه هرعدد" hint="E19" value={r.totalCostPerUnit} />
       </div>
@@ -44,10 +44,10 @@ export default function StatGrid({ r }: { r: CalcResult }) {
 function StatCard({ label, hint, value, Icon }: StatCardDef) {
   const isZero = value === 0;
   return (
-    <div className="rounded-[13px] border border-border bg-surface px-[18px] py-4">
-      <div className="mb-2.5 flex items-center gap-1.5 text-primary">
+    <div className="rounded-[13px] border border-border bg-surface px-3.5 py-3.5 sm:px-[18px] sm:py-4">
+      <div className="mb-2 flex items-center gap-1.5 text-primary sm:mb-2.5">
         <Icon />
-        <span className="text-xs font-semibold text-muted">{label}</span>
+        <span className="text-[11px] font-semibold text-muted sm:text-xs">{label}</span>
       </div>
       <div className={`num text-[19px] font-extrabold ${isZero ? "text-faint" : "text-ink"}`}>{fmtInt(value)}</div>
       <div className="mt-0.5 font-mono text-[9px] text-[#c2bcc9]">{hint}</div>
@@ -57,7 +57,7 @@ function StatCard({ label, hint, value, Icon }: StatCardDef) {
 
 function SecondaryStat({ label, hint, value }: { label: string; hint: string; value: number }) {
   return (
-    <div className="flex items-center justify-between rounded-[13px] border border-border bg-surface px-[18px] py-4">
+    <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 rounded-[13px] border border-border bg-surface px-4 py-3.5 sm:px-[18px] sm:py-4">
       <span className="text-[12.5px] font-semibold text-muted">
         {label} <span className="font-mono text-[10px] text-faint">&middot; {hint}</span>
       </span>

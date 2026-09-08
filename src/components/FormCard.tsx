@@ -1,6 +1,8 @@
 "use client";
 
 import type { CalcInputs } from "@/lib/calc";
+import { getCurrencyRate } from "@/lib/currencies";
+import CurrencyRateField from "./CurrencyRateField";
 import NumberField from "./NumberField";
 
 interface FormCardProps {
@@ -10,17 +12,22 @@ interface FormCardProps {
 
 export default function FormCard({ inputs, onChange }: FormCardProps) {
   return (
-    <div className="rounded-2xl border border-border bg-surface p-6">
-      <h2 className="mb-[18px] text-[15.5px] font-bold">اطلاعات محموله</h2>
+    <div className="rounded-2xl border border-border bg-surface p-5 sm:p-6">
+      <h2 className="mb-4 text-[15.5px] font-bold sm:mb-[18px]">اطلاعات محموله</h2>
 
       <div className="flex flex-col gap-3.5">
         <NumberField label="تعداد" value={inputs.qty} onChange={(v) => onChange("qty", v)} />
         <NumberField label="ارزش کالا" value={inputs.goodsValue} onChange={(v) => onChange("goodsValue", v)} />
-        <NumberField
+        <CurrencyRateField
           label="دلار گمرکی"
           badge="پیش‌فرض"
-          value={inputs.customsDollarRate}
-          onChange={(v) => onChange("customsDollarRate", v)}
+          currency={inputs.customsCurrency}
+          rate={inputs.customsDollarRate}
+          onCurrencyChange={(key) => {
+            onChange("customsCurrency", key);
+            onChange("customsDollarRate", getCurrencyRate(key));
+          }}
+          onRateChange={(v) => onChange("customsDollarRate", v)}
         />
         <NumberField
           label="بیمه و کرایه"

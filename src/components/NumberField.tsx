@@ -1,6 +1,6 @@
 "use client";
 
-import { parseNumber } from "@/lib/format";
+import { useNumericText } from "@/lib/useNumericText";
 
 interface NumberFieldProps {
   label: string;
@@ -11,6 +11,8 @@ interface NumberFieldProps {
 }
 
 export default function NumberField({ label, value, onChange, badge, className }: NumberFieldProps) {
+  const { text, handleChange } = useNumericText(value, onChange);
+
   return (
     <div className={className}>
       <label className="mb-1.5 flex items-center gap-1.5 text-[12.5px] font-semibold text-ink-soft">
@@ -24,10 +26,10 @@ export default function NumberField({ label, value, onChange, badge, className }
       <input
         type="text"
         inputMode="decimal"
-        value={Number.isNaN(value) ? "" : value}
-        onChange={(e) => onChange(parseNumber(e.target.value))}
+        value={text}
+        onChange={handleChange}
         onFocus={(e) => e.target.select()}
-        className="num h-[42px] w-full rounded-[9px] border border-border bg-field-bg px-3 text-sm font-semibold text-ink outline-none transition-colors focus:border-primary focus:bg-white"
+        className="num h-[42px] w-full rounded-[9px] border border-border bg-field-bg px-3 text-base font-semibold text-ink outline-none transition-colors focus:border-primary focus:bg-white sm:text-sm"
       />
     </div>
   );
