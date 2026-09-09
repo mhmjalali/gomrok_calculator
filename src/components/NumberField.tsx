@@ -1,5 +1,6 @@
 "use client";
 
+import { fmtDecimal } from "@/lib/format";
 import { useNumericText } from "@/lib/useNumericText";
 
 interface NumberFieldProps {
@@ -8,9 +9,10 @@ interface NumberFieldProps {
   onChange: (value: number) => void;
   badge?: string;
   className?: string;
+  showThousands?: boolean;
 }
 
-export default function NumberField({ label, value, onChange, badge, className }: NumberFieldProps) {
+export default function NumberField({ label, value, onChange, badge, className, showThousands }: NumberFieldProps) {
   const { text, handleChange } = useNumericText(value, onChange);
 
   return (
@@ -31,6 +33,7 @@ export default function NumberField({ label, value, onChange, badge, className }
         onFocus={(e) => e.target.select()}
         className="num h-[42px] w-full rounded-[9px] border border-border bg-field-bg px-3 text-base font-semibold text-ink outline-none transition-colors focus:border-primary focus:bg-white sm:text-sm"
       />
+      {showThousands && <div className="num mt-1 text-[11px] text-faint">{fmtDecimal(value)}</div>}
     </div>
   );
 }

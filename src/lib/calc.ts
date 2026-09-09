@@ -11,7 +11,7 @@ export interface CalcInputs {
   customsCurrency: string; // selected currency key for the دلار گمرکی dropdown — UI-only, not used in the math
   customsDollarRate: number; // E2 - دلار گمرکی (customs dollar rate) — prefilled from the selected currency, user may overwrite
   insuranceFreight: number; // F2 - بیمه و کرایه (insurance & freight factor) — prefilled, user may overwrite
-  dutyFactor: number; // C3 - part of حقوق گمرکی
+  profitBaseRate: number; // B4 - سود بازرگانی base rate
   profitFactor: number; // C4 - part of سود بازرگانی
   labFee: number; // E15 - آزمایشگاه (lab fee)
   miscCost: number; // E20 - هزینه متفرقه (misc cost)
@@ -19,7 +19,7 @@ export interface CalcInputs {
 
 export interface CalcSettings {
   dutyBaseRate: number; // B3 - حقوق گمرکی base rate
-  profitBaseRate: number; // B4 - سود بازرگانی base rate
+  dutyFactor: number; // C3 - part of حقوق گمرکی
   redCrescentBaseRate: number; // B5 - هلال احمر base rate (present in sheet, not used by any formula)
   wasteBaseRate: number; // B6 - پسماند base rate (present in sheet, not used by any formula)
   redCrescentRate: number; // D5 - هلال احمر rate actually used in G5
@@ -69,7 +69,7 @@ export const defaultInputs: CalcInputs = {
   customsCurrency: defaultCurrencyKey, // "دلار" — matches customsDollarRate below
   customsDollarRate: 1310661, // prefilled statistical default — badge "پیش‌فرض", user may overwrite
   insuranceFreight: 1.005, // prefilled statistical default — badge "پیش‌فرض", user may overwrite
-  dutyFactor: 0,
+  profitBaseRate: 0,
   profitFactor: 0,
   labFee: 0,
   miscCost: 0,
@@ -77,7 +77,7 @@ export const defaultInputs: CalcInputs = {
 
 export const defaultSettings: CalcSettings = {
   dutyBaseRate: 0.04,
-  profitBaseRate: 0.01,
+  dutyFactor: 0.2,
   redCrescentBaseRate: 0.01,
   wasteBaseRate: 0.0005,
   redCrescentRate: 0.002,
@@ -94,10 +94,11 @@ export const defaultSettings: CalcSettings = {
 };
 
 export function calculate(inputs: CalcInputs, settings: CalcSettings): CalcResult {
-  const { qty, goodsValue, customsDollarRate, insuranceFreight, dutyFactor, profitFactor, labFee, miscCost } = inputs;
+  const { qty, goodsValue, customsDollarRate, insuranceFreight, profitBaseRate, profitFactor, labFee, miscCost } =
+    inputs;
   const {
     dutyBaseRate,
-    profitBaseRate,
+    dutyFactor,
     redCrescentRate,
     wasteRate,
     kolbariRate,

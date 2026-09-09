@@ -17,7 +17,12 @@ export default function FormCard({ inputs, onChange }: FormCardProps) {
 
       <div className="flex flex-col gap-3.5">
         <NumberField label="تعداد" value={inputs.qty} onChange={(v) => onChange("qty", v)} />
-        <NumberField label="ارزش کالا" value={inputs.goodsValue} onChange={(v) => onChange("goodsValue", v)} />
+        <NumberField
+          label="ارزش کالا"
+          value={inputs.goodsValue}
+          onChange={(v) => onChange("goodsValue", v)}
+          showThousands
+        />
         <CurrencyRateField
           label="دلار گمرکی"
           badge="پیش‌فرض"
@@ -34,14 +39,24 @@ export default function FormCard({ inputs, onChange }: FormCardProps) {
           badge="پیش‌فرض"
           value={inputs.insuranceFreight}
           onChange={(v) => onChange("insuranceFreight", v)}
+          showThousands
         />
         <div className="grid grid-cols-2 gap-3">
-          <NumberField label="ضریب حقوق گمرکی" value={inputs.dutyFactor} onChange={(v) => onChange("dutyFactor", v)} />
+          <NumberField
+            label="نرخ پایه سود بازرگانی"
+            value={inputs.profitBaseRate}
+            onChange={(v) => onChange("profitBaseRate", v)}
+          />
           <NumberField label="ضریب سود بازرگانی" value={inputs.profitFactor} onChange={(v) => onChange("profitFactor", v)} />
         </div>
         <div className="grid grid-cols-2 gap-3">
-          <NumberField label="آزمایشگاه" value={inputs.labFee} onChange={(v) => onChange("labFee", v)} />
-          <NumberField label="هزینه متفرقه" value={inputs.miscCost} onChange={(v) => onChange("miscCost", v)} />
+          <NumberField label="آزمایشگاه" value={inputs.labFee} onChange={(v) => onChange("labFee", v)} showThousands />
+          <NumberField
+            label="هزینه متفرقه"
+            value={inputs.miscCost}
+            onChange={(v) => onChange("miscCost", v)}
+            showThousands
+          />
         </div>
       </div>
     </div>
