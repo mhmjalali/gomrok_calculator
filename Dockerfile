@@ -17,6 +17,8 @@ WORKDIR /app
 RUN corepack enable
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+# Turns on `output: "standalone"` in next.config.ts for this build only — see there for why.
+ENV DOCKER_BUILD=1
 RUN pnpm build
 
 # ---- 3. minimal production runtime ----
